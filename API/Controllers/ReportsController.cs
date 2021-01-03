@@ -26,6 +26,7 @@ namespace API.Controllers
                 };
 
                 report.setPredictedBusinessStatus(predictionResult.Score);
+                report.setImpact(eachModelInput, predictionResult.Score);
 
                 reports.Add(report);
             });
@@ -43,11 +44,12 @@ namespace API.Controllers
             );
 
             var report = new Report {
-                ReportingTime = DateTime.Now,
+                ReportingTime = DateTime.Today,
                 UserExperienceScore = predictionResult.Score
             };
 
             report.setPredictedBusinessStatus(predictionResult.Score);
+            report.setImpact(modelInput, predictionResult.Score);
             
             return Ok(new SingleReportResponse{
                 Status = "ok",
