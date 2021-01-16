@@ -17,27 +17,31 @@ namespace API.Models
         public float ServerResponseTime { get; set; }
 
 
-        [ColumnName("DOMSize"), LoadColumn(3)]
-        public float DomSize { get; set; }
+        [ColumnName("BootUpTime"), LoadColumn(3)]
+        public float BootUpTime { get; set; }
 
 
-        [ColumnName("TotalBlockingTime"), LoadColumn(4)]
+        [ColumnName("FirstMeaningfulPaint"), LoadColumn(4)]
+        public float FirstMeaningfulPaint { get; set; }
+
+
+        [ColumnName("TotalBlockingTime"), LoadColumn(5)]
         public float TotalBlockingTime { get; set; }
 
 
-        [ColumnName("TotalByteWeight"), LoadColumn(5)]
+        [ColumnName("TotalByteWeight"), LoadColumn(6)]
         public float TotalByteWeight { get; set; }
 
 
-        [ColumnName("CumulativeLayoutShift"), LoadColumn(6)]
-        public float CumulativeLayoutShift { get; set; }
+        [ColumnName("FirstCpuIdle"), LoadColumn(7)]
+        public float FirstCpuIdle { get; set; }
 
 
-        [ColumnName("LargestContentfulPaint"), LoadColumn(7)]
+        [ColumnName("LargestContentfulPaint"), LoadColumn(8)]
         public float LargestContentfulPaint { get; set; }
 
 
-        [ColumnName("UserExperience"), LoadColumn(8)]
+        [ColumnName("UserExperience"), LoadColumn(9)]
         public float UserExperience { get; set; }
 
     }

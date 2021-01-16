@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace API.Models
 {
@@ -80,20 +79,20 @@ namespace API.Models
                 );
             }
 
-            if(model.LargestContentfulPaint > 2500) {
-                float reduction = model.LargestContentfulPaint - 2500;
-                float total = model.LargestContentfulPaint;
+            if(model.FirstCpuIdle > 4700) {
+                float reduction = model.FirstCpuIdle - 4700;
+                float total = model.FirstCpuIdle;
 
                 // Improvement Prediction Afte Reduction
                 var newModel = model;
-                newModel.LargestContentfulPaint = model.LargestContentfulPaint - reduction;
+                newModel.FirstCpuIdle = model.FirstCpuIdle - reduction;
                 var newPrediction = ConsumeModel.Predict(
                   input: newModel
                 );
                 var improvement = ((previousScore - newPrediction.Score) / previousScore) * 100;
 
                 this.Impact.Add(
-                    "largestContentfulPaint",
+                    "firstCpuIdle",
                     new Effort {
                         suggestedReduction = reduction,
                         effortPercentage = (reduction / total) * 100,
@@ -102,20 +101,20 @@ namespace API.Models
                 );
             }
 
-            if(model.FirstContentfulPaint > 2000) {
-                float reduction = model.FirstContentfulPaint - 2000;
-                float total = model.FirstContentfulPaint;
+            if(model.BootUpTime > 2000) {
+                float reduction = model.BootUpTime - 2000;
+                float total = model.BootUpTime;
 
                 // Improvement Prediction Afte Reduction
                 var newModel = model;
-                newModel.FirstContentfulPaint = model.FirstContentfulPaint - reduction;
+                newModel.BootUpTime = model.BootUpTime - reduction;
                 var newPrediction = ConsumeModel.Predict(
                   input: newModel
                 );
                 var improvement = ((previousScore - newPrediction.Score) / previousScore) * 100;
 
                 this.Impact.Add(
-                    "firstContentfulPaint",
+                    "bootUpTime",
                     new Effort {
                         suggestedReduction = reduction,
                         effortPercentage = (reduction / total) * 100,
@@ -123,6 +122,7 @@ namespace API.Models
                     }
                 );
             }
+
 
             // in KB
             if(model.TotalByteWeight / 1000 > 1600) {
@@ -147,20 +147,20 @@ namespace API.Models
                 );
             }
 
-            if(model.CumulativeLayoutShift > 0.1) {
-                float reduction = model.CumulativeLayoutShift - 0.1f;
-                float total = model.CumulativeLayoutShift;
+            if(model.LargestContentfulPaint > 2500) {
+                float reduction = model.LargestContentfulPaint - 2500;
+                float total = model.LargestContentfulPaint;
 
                 // Improvement Prediction Afte Reduction
                 var newModel = model;
-                newModel.CumulativeLayoutShift = model.CumulativeLayoutShift - reduction;
+                newModel.LargestContentfulPaint = model.LargestContentfulPaint - reduction;
                 var newPrediction = ConsumeModel.Predict(
                   input: newModel
                 );
                 var improvement = ((previousScore - newPrediction.Score) / previousScore) * 100;
 
                 this.Impact.Add(
-                    "cumulativeLayoutShift",
+                    "largestContentfulPaint",
                     new Effort {
                         suggestedReduction = reduction,
                         effortPercentage = (reduction / total) * 100,
@@ -169,13 +169,13 @@ namespace API.Models
                 );
             }
 
-            if(model.DomSize > 1500) {
-                float reduction = model.DomSize - 1500;
-                float total = model.DomSize;
+            if(model.FirstMeaningfulPaint > 2000) {
+                float reduction = model.FirstMeaningfulPaint - 2000;
+                float total = model.FirstMeaningfulPaint;
 
                 // Improvement Prediction Afte Reduction
                 var newModel = model;
-                newModel.DomSize = model.DomSize - reduction;
+                newModel.FirstMeaningfulPaint = model.FirstMeaningfulPaint - reduction;
                 var newPrediction = ConsumeModel.Predict(
                   input: newModel
                 );
@@ -183,7 +183,7 @@ namespace API.Models
 
 
                 this.Impact.Add(
-                    "domSize",
+                    "firstMeaningfulPaint",
                     new Effort {
                         suggestedReduction = reduction,
                         effortPercentage = (reduction / total) * 100,
@@ -206,6 +206,28 @@ namespace API.Models
 
                 this.Impact.Add(
                     "totalBlockingTime",
+                    new Effort {
+                        suggestedReduction = reduction,
+                        effortPercentage = (reduction / total) * 100,
+                        predictedImprovement = improvement
+                    }
+                );
+            }
+
+            if(model.FirstContentfulPaint > 2000) {
+                float reduction = model.FirstContentfulPaint - 2000;
+                float total = model.FirstContentfulPaint;
+
+                // Improvement Prediction Afte Reduction
+                var newModel = model;
+                newModel.FirstContentfulPaint = model.FirstContentfulPaint - reduction;
+                var newPrediction = ConsumeModel.Predict(
+                  input: newModel
+                );
+                var improvement = ((previousScore - newPrediction.Score) / previousScore) * 100;
+
+                this.Impact.Add(
+                    "firstContentfulPaint",
                     new Effort {
                         suggestedReduction = reduction,
                         effortPercentage = (reduction / total) * 100,
